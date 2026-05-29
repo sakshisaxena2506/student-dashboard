@@ -1,14 +1,15 @@
  import Sidebar from "@/components/Sidebar";
-import HeroTile from "@/components/HeroTile";
+import HeroCard from "@/components/HeroCard";
 import CourseCard from "@/components/CourseCard";
-import ActivityTile from "@/components/ActivityTile";
+import ActivityCard from "@/components/ActivityCard";
 
-import { supabase } from "@/lib/supabase";
+import { supabase } from "../lib/supabase";
 
 type Course = {
   id: number;
   title: string;
   progress: number;
+  icon_name: string;
 };
 
 export default async function Home() {
@@ -24,7 +25,7 @@ export default async function Home() {
 
       <section className="flex-1 p-6">
 
-        <HeroTile />
+        <HeroCard />
 
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
 
@@ -37,7 +38,7 @@ export default async function Home() {
             />
           ))}
 
-          <ActivityTile />
+          <ActivityCard/>
 
         </section>
 
