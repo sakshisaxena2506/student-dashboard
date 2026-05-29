@@ -33,6 +33,7 @@ export default async function Home() {
               key={course.id}
               title={course.title}
               progress={course.progress}
+              icon_name={ course.icon_name}
             />
           ))}
 
