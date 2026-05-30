@@ -1,9 +1,8 @@
- import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import HeroCard from "@/components/HeroCard";
 import CourseCard from "@/components/CourseCard";
 import ActivityCard from "@/components/ActivityCard";
-
-import { supabase } from "../lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 type Course = {
   id: number;
@@ -13,37 +12,39 @@ type Course = {
 };
 
 export default async function Home() {
-
-  const { data: courses } = await supabase
-    .from<Course>("courses")
+  const { data: courses, error } = await supabase
+    .from("courses")
     .select("*");
+
+  if (error) {
+    console.error("Supabase Error:", error.message);
+    return (
+      <main className="text-white p-6">
+        Failed to load courses.
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#0f1117] text-white flex">
-
       <Sidebar />
 
       <section className="flex-1 p-6">
-
         <HeroCard />
 
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
-
-          {courses?.map((course) => (
+          {courses?.map((course: Course) => (
             <CourseCard
               key={course.id}
               title={course.title}
               progress={course.progress}
-              icon_name={ course.icon_name}
+              icon_name={course.icon_name}
             />
           ))}
 
-          <ActivityCard/>
-
+          <ActivityCard />
         </section>
-
       </section>
-
     </main>
   );
 }
