@@ -13,8 +13,16 @@ export default function BentoCard({
 }: BentoCardProps) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      variants={{
+        hidden: {
+          opacity: 0,
+          y: 20,
+        },
+        show: {
+          opacity: 1,
+          y: 0,
+        },
+      }}
       whileHover={{
         scale: 1.02,
       }}
@@ -34,16 +42,7 @@ export default function BentoCard({
         ${className}
       `}
     >
-      
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10" />
-
-      
-      <motion.div
-        className="absolute inset-0 rounded-2xl border border-cyan-400/0"
-        whileHover={{
-          borderColor: "rgba(34,211,238,0.3)",
-        }}
-      />
 
       <div className="relative z-10">
         {children}
