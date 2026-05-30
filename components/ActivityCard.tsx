@@ -1,39 +1,42 @@
  "use client";
 
-import { motion } from "framer-motion";
+import BentoCard from "./BentoCard";
 
-const activity = [40, 70, 55, 90, 60, 75, 45];
+const activity = Array.from(
+  { length: 35 },
+  () => Math.floor(Math.random() * 4)
+);
 
-export default function ActivityTile() {
+export default function ActivityCard() {
   return (
-    <motion.article
-      whileHover={{ scale: 1.02 }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      }}
-      className="bg-[#151821] rounded-3xl p-6 border border-white/10"
-    >
-
+    <BentoCard className="col-span-1 md:col-span-2">
       <h2 className="text-xl font-semibold">
-        Weekly Activity
+        Learning Activity
       </h2>
 
-      <div className="flex items-end gap-3 h-40 mt-8">
+      <p className="text-gray-400 text-sm mt-2">
+        Last 5 weeks of progress
+      </p>
 
+      <div className="grid grid-cols-7 gap-2 mt-6">
         {activity.map((value, index) => (
           <div
             key={index}
-            className="flex-1 bg-indigo-500/70 rounded-xl"
-            style={{
-              height: `${value}%`,
-            }}
+            className={`
+              h-6 w-6 rounded-md
+              ${
+                value === 0
+                  ? "bg-zinc-800"
+                  : value === 1
+                  ? "bg-cyan-900"
+                  : value === 2
+                  ? "bg-cyan-700"
+                  : "bg-cyan-500"
+              }
+            `}
           />
         ))}
-
       </div>
-
-    </motion.article>
+    </BentoCard>
   );
 }

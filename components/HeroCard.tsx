@@ -1,30 +1,34 @@
-"use client";
+ "use client";
 
 import { motion } from "framer-motion";
+import BentoCard from "./BentoCard";
 
-export default function HeroTile() {
+export default function HeroCard() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.5,
-      }}
-      className="bg-[#151821] border border-white/10 rounded-3xl p-8"
-    >
+    <BentoCard className="min-h-[220px]">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h1 className="text-4xl font-bold">
+          Welcome back, Sakshi 👋
+        </h1>
 
-      <h1 className="text-3xl font-bold">
-        Welcome back, Sakshi 👋
-      </h1>
+        <p className="text-gray-400 mt-3 text-lg">
+          Ready to continue your learning journey?
+        </p>
 
-      <p className="text-gray-400 mt-3">
-        You completed 3 lessons today.
-      </p>
+        <div className="flex items-center gap-3 mt-8">
+          <div className="px-4 py-2 rounded-xl bg-orange-500/10 border border-orange-500/20">
+            🔥 12 Day Streak
+          </div>
 
-      <div className="mt-6 inline-block bg-indigo-500/20 text-indigo-300 px-4 py-2 rounded-xl">
-        🔥 12 Day Streak
-      </div>
-
-    </motion.section>
+          <div className="px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+            📚 3 Lessons Completed
+          </div>
+        </div>
+      </motion.div>
+    </BentoCard>
   );
 }

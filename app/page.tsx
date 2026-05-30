@@ -1,7 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import HeroCard from "@/components/HeroCard";
-import CourseCard from "@/components/CourseCard";
 import ActivityCard from "@/components/ActivityCard";
+import AnimatedCourses from "@/components/AnimatedCourses";
 import { supabase } from "@/lib/supabase";
 
 type Course = {
@@ -17,9 +17,8 @@ export default async function Home() {
     .select("*");
 
   if (error) {
-    console.error("Supabase Error:", error.message);
     return (
-      <main className="text-white p-6">
+      <main className="min-h-screen bg-[#0f1117] text-white flex items-center justify-center">
         Failed to load courses.
       </main>
     );
@@ -33,15 +32,7 @@ export default async function Home() {
         <HeroCard />
 
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
-          {courses?.map((course: Course) => (
-            <CourseCard
-              key={course.id}
-              title={course.title}
-              progress={course.progress}
-              icon_name={course.icon_name}
-            />
-          ))}
-
+          <AnimatedCourses courses={courses || []} />
           <ActivityCard />
         </section>
       </section>
