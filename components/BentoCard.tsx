@@ -2,15 +2,15 @@
 
 import { motion } from "framer-motion";
 
-type BentoTileProps = {
+type BentoCardProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export default function BentoTile({
+export default function BentoCard({
   children,
   className = "",
-}: BentoTileProps) {
+}: BentoCardProps) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
